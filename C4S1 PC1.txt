@@ -1,0 +1,53 @@
+package com.jap.averageofintegers;
+
+
+public class AverageAge
+{
+    //This function calculates the average age, takes as input the raw data array
+    // handle the exception appropriately
+    public String averageAgeCalculator(String[] ageRawData)
+    {
+        int n=ageRawData.length;
+        int count=0;
+        int indexP=0;
+        double sum=0;
+        String res=null;
+
+        for (int i=0 ; i<n ; i++)
+        {
+            int j=65;
+            for (j=65 ; j<122 ; j++)
+            {
+                if (ageRawData[i].charAt(0) == j)
+                {
+                    count++;
+                    indexP=i;
+                }
+            }
+        }
+
+        {
+            for (int i=0; i< ageRawData.length; i++)
+            {
+                if(count!=0)
+                {
+                    try
+                    {
+                        sum += Integer.parseInt(ageRawData[i]);
+                    }
+                    catch (NumberFormatException object)
+                    {
+                        res = "java.lang.NumberFormatException: For input string: \""+ageRawData[indexP]+"\"";
+                    }
+                }
+                else if (count==0)
+                {
+                    sum += Integer.parseInt(ageRawData[i]);
+                    double averageAge=sum / ageRawData.length;
+                    res = String.valueOf(averageAge);
+                }
+            }
+        }
+        return res;
+    }
+}
